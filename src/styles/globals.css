@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+/*
+  Enhanced dark theme and SoundCloud-inspired palette
+  - Background: #18171c (dark gray)
+  - Foreground: #f5f5f5 (light gray)
+  - Accent: #ff5500 (SoundCloud orange)
+  - Secondary: #232129 (darker gray)
+  - Skeleton: #2c2a32
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #18171c;
+  --foreground: #f5f5f5;
+  --accent: #ff5500;
+  --secondary: #232129;
+  --skeleton: #2c2a32;
 }
 
 @theme inline {
@@ -22,5 +33,58 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
 }
+
+/* Accent utility */
+.text-accent { color: var(--accent); }
+.bg-accent { background: var(--accent); }
+
+/* Skeleton loading */
+.skeleton {
+  background: var(--skeleton);
+  border-radius: 6px;
+  min-height: 1em;
+  animation: skeleton-pulse 1.2s infinite ease-in-out alternate;
+}
+@keyframes skeleton-pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Button and interactive states */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn:hover, .btn:focus {
+  background: #ff7733;
+  transform: scale(1.04);
+}
+.btn:active {
+  background: #e64a00;
+  transform: scale(0.98);
+}
+
+/* Track row hover */
+.track-row {
+  transition: background 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+.track-row:hover {
+  background: var(--secondary);
+  box-shadow: 0 2px 8px 0 #0002;
+}
+
+/* Consistent spacing */
+.p-4 { padding: 16px; }
+.p-6 { padding: 24px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
